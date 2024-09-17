@@ -24,7 +24,11 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    role: { type: String, enum: ['admin', 'contributor', 'user'], default: 'user' },
+    role: { type: String, enum: ['admin', 'contributor', 'user'], default: 'admin' },
+    points: { type: Number, default: 0 },
+    isVerified: { type: Boolean, default: false },
+    otp: { type: String },
+    otpExpires: { type: Date },
     createdAt: { type: Date, default: Date.now }
 });
 
