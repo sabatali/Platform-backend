@@ -1,10 +1,20 @@
 import { Builder, By, Key, until } from 'selenium-webdriver';
+import chrome from 'selenium-webdriver/chrome.js';
 import 'chromedriver';
 
 export const searchBlos = async (req, res) => {
-    console.log("🚀 ~ register ~ req:", req.body)
+    console.log("🚀 ~ register ~ req:", req.body);
 
-    let driver = await new Builder().forBrowser('chrome').build();
+    // Set up Chrome options
+    let options = new chrome.Options();
+    options.addArguments('headless');
+    options.addArguments('disable-gpu'); 
+
+    let driver = await new Builder()
+        .forBrowser('chrome')
+        .setChromeOptions(options)
+        .build();
+
     try {
         await driver.get('https://www.google.com');
 
@@ -21,7 +31,7 @@ export const searchBlos = async (req, res) => {
             let linkElement = await results[i].findElement(By.xpath('..'));
             let link = await linkElement.getAttribute('href');
             
-            let descriptionElement = await driver.findElement(By.className("VwiC3b"));
+            let descriptionElement = await driver.findElement(By.css(".VwiC3b"));
             let description = await descriptionElement.getText();
 
             data.push({ title, link, description });
@@ -34,6 +44,7 @@ export const searchBlos = async (req, res) => {
         });
 
     } catch (error) {
+        console.error("Error:", error); // Log the error for better debugging
         res.status(500).json({
             status: "error",
             message: "Failed to retrieve resources"
@@ -41,4 +52,4 @@ export const searchBlos = async (req, res) => {
     } finally {
         await driver.quit();
     }
-}
+};
