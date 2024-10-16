@@ -113,6 +113,20 @@ export const getSingleQuestion = async (req, res) => {
 };
 ;
 
+export const deleteQuestion = async (req, res) => {
+  const { id } = req.params;  // Get the question ID from request parameters
 
+  try {
+    const question = await Question.findByIdAndDelete(id);  // Find and delete the question by ID
+
+    if (!question) {
+      return res.status(404).json({ message: 'Question not found' });
+    }
+
+    return res.status(200).json({ message: 'Question deleted successfully' });
+  } catch (error) {
+    return res.status(500).json({ message: 'Server error', error });
+  }
+};
 
 
