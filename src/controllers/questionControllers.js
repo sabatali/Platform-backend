@@ -115,15 +115,28 @@ export const getSingleQuestion = async (req, res) => {
 
 export const deleteQuestion = async (req, res) => {
   const { id } = req.params;  // Get the question ID from request parameters
+  console.log("🚀 ~ deleteQuestion ~ id:", id)
+  const username = req.body.userData.username
 
   try {
-    const question = await Question.findByIdAndDelete(id);  // Find and delete the question by ID
 
-    if (!question) {
-      return res.status(404).json({ message: 'Question not found' });
+    const questions = Question.findOne(id);
+
+    if(questions.createdby == username || username ==  "sabatalimalik"){
+        const questiondel = await Question.findByIdAndDelete(id);
+        
+    if (!questiondel) {
+        return res.status(404).json({ message: 'Question not found' });
+      }  // Find and delete the question by ID
+
+      return res.status(200).json({ message: 'Question deleted successfully' });
+
+    }else{
+        return res.status(404).json({ message: 'Sorry Your not have permision to delete this' });
     }
 
-    return res.status(200).json({ message: 'Question deleted successfully' });
+
+
   } catch (error) {
     return res.status(500).json({ message: 'Server error', error });
   }
