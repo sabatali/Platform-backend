@@ -3,6 +3,7 @@ import connectDB from "./db/db.js";
 import regRoute from "./routes/user-routes.js";
 import cors from 'cors';
 import questionRoute from './routes/questionRoutes.js';
+import assingmentRoute from './routes/assingmentRoutes.js';
 // import routerTransaction from './routes/transactionRoutes.js'
 
 const app = express();
@@ -15,6 +16,7 @@ connectDB();
 
 app.use("/api/v1", regRoute);
 app.use("/api/v1", questionRoute);
+app.use("/api/v1", assingmentRoute);
 
 // Root route for testing
 app.get('/', (req, res) => {
