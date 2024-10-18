@@ -1,28 +1,18 @@
-# List files in the current directory
-echo "Listing files in current directory:"
-ls -al
-
-# Check the specific path where you expect the file
-echo "Listing files in /opt/render/project:"
-ls -al /opt/render/project
-
-echo "Listing files in /opt/render:"
-ls -al /opt/render
-
-echo "Listing files in /opt:"
-ls -al /opt
-
-JDK_INSTALLER="jdk-22_windows-x64_bin.exe"
-
-# Path to install JDK
-INSTALL_PATH="/opt/render/project/src/bin/jdk/"
-
-# Create the install directory
-mkdir -p $INSTALL_PATH
-
-# Install JDK
+#!/bin/bash
 echo "Installing JDK..."
-cp $JDK_INSTALLER $INSTALL_PATH
 
-# Run the JDK installer (silent mode)
-$INSTALL_PATH"jdk-22_windows-x64_bin.exe" /s
+# Download Linux-compatible JDK installer
+curl -L -o jdk-23_linux-x64_bin.tar.gz "https://download.oracle.com/java/23/latest/jdk-23_linux-x64_bin.tar.gz"
+
+# Extract the JDK tarball
+mkdir -p /opt/jdk
+tar -xzf jdk-23_linux-x64_bin.tar.gz -C /opt/jdk
+
+# Set JDK environment variables
+export JAVA_HOME=/opt/jdk/jdk-23
+export PATH=$JAVA_HOME/bin:$PATH
+
+# Verify the JDK installation
+java -version
+
+echo "JDK installation completed."
