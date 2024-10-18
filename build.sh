@@ -1,18 +1,15 @@
 #!/bin/bash
 
-# Update the package list
+# Update package list and install OpenJDK 17
 echo "Updating package list..."
-apt-get update
+apt-get update && apt-get install -y openjdk-17-jdk
 
-# Install OpenJDK 17
-echo "Installing OpenJDK 17..."
-apt-get install -y openjdk-17-jdk
-
-# Install Node.js dependencies
-echo "Installing Node.js dependencies..."
-npm install
-
-# Any other build steps can be added here
-# For example, building your application, running tests, etc.
+# Verify the installation
+if java -version; then
+    echo "OpenJDK 17 installed successfully."
+else
+    echo "Failed to install OpenJDK."
+    exit 1
+fi
 
 echo "Build completed successfully!"
