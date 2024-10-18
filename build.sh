@@ -3,9 +3,14 @@ echo "Listing files in current directory:"
 ls -al
 
 # Check the specific path where you expect the file
-echo "Listing files in /opt/render/project/src/bin:"
-ls -al /opt/render/project/src/bin
+echo "Listing files in /opt/render/project:"
+ls -al /opt/render/project
 
+echo "Listing files in /opt/render:"
+ls -al /opt/render
+
+echo "Listing files in /opt:"
+ls -al /opt
 
 JDK_INSTALLER="jdk-22_windows-x64_bin.exe"
 
