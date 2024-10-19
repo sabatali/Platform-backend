@@ -1,20 +1,25 @@
 #!/bin/bash
 echo "Installing JDK..."
 
-# Create a local directory for the JDK
-mkdir -p ./jdk
+# Define JDK version and download URL
+jdk_version="22"
+jdk_download_url="https://download.oracle.com/java/23/latest/jdk-23_linux-x64_bin.tar.gz"
+jdk_install_dir="/opt/jdk"
 
-# Download Linux-compatible JDK installer
-curl -L -o jdk-23_linux-x64_bin.tar.gz "https://download.oracle.com/java/23/latest/jdk-23_linux-x64_bin.tar.gz"
+# Create a directory for JDK installation
+mkdir -p "$jdk_install_dir"
 
-# Extract the JDK tarball to the local directory
-tar -xzf jdk-23_linux-x64_bin.tar.gz -C ./jdk --strip-components=1
+# Download the JDK
+curl -L -o jdk.tar.gz "$jdk_download_url"
 
-# Set JDK environment variables to use the locally installed JDK
-export JAVA_HOME=$(pwd)/jdk
-export PATH=$JAVA_HOME/bin:$PATH
+# Extract the JDK
+tar -xzvf jdk.tar.gz -C "$jdk_install_dir"
 
-# Verify the JDK installation
+# Set environment variables for JDK
+export JAVA_HOME="$jdk_install_dir/jdk-$jdk_version"
+export PATH="$JAVA_HOME/bin:$PATH"
+
+# Verify installation
 java -version
 
 echo "JDK installation completed."
