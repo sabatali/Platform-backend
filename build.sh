@@ -2,7 +2,7 @@
 echo "Installing JDK..."
 
 # Define JDK version and download URL
-jdk_version="22"
+jdk_version="23"
 jdk_download_url="https://download.oracle.com/java/23/latest/jdk-23_linux-x64_bin.tar.gz"
 jdk_install_dir="./jdk"  # Change to a writable directory within the project
 
