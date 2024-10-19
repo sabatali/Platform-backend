@@ -24,7 +24,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    role: { type: String, enum: ['admin', 'contributor', 'user'], default: 'admin' },
+    role: { type: String, enum: ['admin', 'contributor', 'user'], default: 'user' },
     points: { type: Number, default: 0 },
     isVerified: { type: Boolean, default: false },
     otp: { type: String },
