@@ -14,12 +14,12 @@ const transporter = nodemailer.createTransport({
     },
 });
 
-export const UserUpdateMail= (email , bcc, emailContent) => {
+export const UserUpdateMail= (email , bcc, subject, emailContent) => {
     const mailOptions = {
         from: process.env.EMAIL_USER,
         to: email,
         bcc,
-        subject: 'New Question Added',
+        subject: subject,
         html : emailContent,
     };
 
