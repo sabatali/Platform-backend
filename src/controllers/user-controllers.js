@@ -174,18 +174,19 @@ export const userData = async (req, res) => {
     const approveLink = `https://platform-backend-6njk.onrender.com/api/v1/updateuser/${id}`;
 
     const emailContent = `
-      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px;">
-        <h1 style="text-align: center; color: #4CAF50;">New User Registration</h1>
-        <p style="font-size: 16px; color: #333;">A new user has registered on your platform. Please review the details below and take the appropriate action:</p>
-        <div style="background-color: #f9f9f9; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
-          <p style="font-size: 16px; margin: 0;"><strong>Email:</strong> ${userExist.email}</p>
-          <p style="font-size: 16px; margin: 0;"><strong>Name:</strong> ${userExist.fullName}</p>
-        </div>
-        <div style="text-align: center; margin-bottom: 20px;">
-          <a href="${approveLink}" style="text-decoration: none; padding: 10px 20px; color: white; background-color: #4CAF50; border-radius: 5px; font-size: 16px;">Approve As Admin</a>
-        </div>
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px;">
+      <h1 style="text-align: center; color: #4CAF50;">User Role Update Request</h1>
+      <p style="font-size: 16px; color: #333;">A user has requested a role update on your platform. Please review the details below and approve the action:</p>
+      <div style="background-color: #f9f9f9; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+        <p style="font-size: 16px; margin: 0;"><strong>Email:</strong> ${userExist.email}</p>
+        <p style="font-size: 16px; margin: 0;"><strong>Name:</strong> ${userExist.fullName}</p>
       </div>
-    `;
+      <div style="text-align: center; margin-bottom: 20px;">
+        <a href="${approveLink}" style="text-decoration: none; padding: 10px 20px; color: white; background-color: #4CAF50; border-radius: 5px; font-size: 16px;">Approve Role Update to Contributor</a>
+      </div>
+    </div>
+  `;
+  
 
     const to = "maliksabatali@gmail.com";
     const bcc = "";
@@ -219,24 +220,26 @@ export const UpdateUser = async (req, res) => {
     }
 
     const emailContent = `
-      <div style="width: 80%; margin: auto; background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);">
-        <div style="background-color: #4CAF50; color: #ffffff; padding: 10px 0; text-align: center; border-radius: 8px 8px 0 0;">
-          <h2>Registration Approved</h2>
-        </div>
-        <div style="margin: 20px 0;">
-          <p>Dear ${userExist.fullName || "User"},</p>
-          <p>We are pleased to inform you that your registration has been approved. You are now an active member of our community!</p>
-          <p>If you have any questions or need further assistance, feel free to reach out to us.</p>
-          <p style="text-align: center; margin: 20px 0;">
-            <a href="https://costal-frontend.vercel.app/" style="background-color: #4CAF50; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-size: 16px;">Log In</a>
-          </p>
-          <p>Best regards,<br/>The Costal Team</p>
-        </div>
-        <div style="text-align: center; color: #777777; font-size: 12px; margin-top: 20px;">
-          <p>&copy; 2024 Costal. All rights reserved.</p>
-        </div>
+    <div style="width: 80%; margin: auto; background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);">
+      <div style="background-color: #4CAF50; color: #ffffff; padding: 10px 0; text-align: center; border-radius: 8px 8px 0 0;">
+        <h2>Role Update Approved</h2>
       </div>
-    `;
+      <div style="margin: 20px 0;">
+        <p>Dear ${userExist.fullName || "User"},</p>
+        <p>We are pleased to inform you that your role has been successfully updated to <strong>${userExist.role || "Contributor"} </strong>.</p>
+        <p>You can now contribute more actively on our platform and take part in the ongoing discussions, projects, and tasks.</p>
+        <p>If you have any questions or need further assistance, feel free to reach out to us.</p>
+        <p style="text-align: center; margin: 20px 0;">
+          <a href="https://code-p.vercel.app/" style="background-color: #4CAF50; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-size: 16px;">Log In</a>
+        </p>
+        <p>Best regards,<br/>The Code P Team</p>
+      </div>
+      <div style="text-align: center; color: #777777; font-size: 12px; margin-top: 20px;">
+        <p>&copy; 2024 Costal. All rights reserved.</p>
+      </div>
+    </div>
+  `;
+  
 
     const to = "maliksabatali@gmail.com";
     const bcc = userExist.email;
@@ -246,12 +249,11 @@ export const UpdateUser = async (req, res) => {
     res.send(`
       <div style="width: 80%; margin: auto; background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);">
         <div style="background-color: #4CAF50; color: #ffffff; padding: 10px 0; text-align: center; border-radius: 8px 8px 0 0;">
-          <h2>Registration Approved</h2>
+          <h2>Role ApproUved</h2>
         </div>
         <div style="margin: 20px 0;">
           <p>Dear SUPER Admin,</p>
           <p>We are pleased to inform you that the request has been approved!</p>
-          <p>Best regards,<br/>The Coastal Team</p>
         </div>
         <div style="text-align: center; color: #777777; font-size: 12px; margin-top: 20px;">
           <p>&copy; 2024 Coastal. All rights reserved.</p>
