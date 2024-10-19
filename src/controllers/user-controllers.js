@@ -207,10 +207,10 @@ export const userData = async (req, res) => {
           <p>We have received your request to update your role to <strong>Contributor</strong>. Our team is reviewing the request, and you will be notified once it has been processed.</p>
           <p>We appreciate your patience.</p>
           <p>If you have any questions or need further assistance, feel free to reach out to us.</p>
-          <p>Best regards,<br/>The Costal Team</p>
+          <p>Best regards,<br/>The Code P Team</p>
         </div>
         <div style="text-align: center; color: #777777; font-size: 12px; margin-top: 20px;">
-          <p>&copy; 2024 Costal. All rights reserved.</p>
+          <p>&copy; 2024 Code P. All rights reserved.</p>
         </div>
       </div>
     `;
@@ -225,7 +225,7 @@ export const userData = async (req, res) => {
 
     return res.status(200).json({
       status: "success",
-      message: "Email sent successfully",
+      message: "Role Update Request Received Please Check You Email",
     });
   } catch (error) {
     console.error("🚀 ~ AdminMail ~ error:", error);
@@ -264,7 +264,7 @@ export const UpdateUser = async (req, res) => {
         <p>Best regards,<br/>The Code P Team</p>
       </div>
       <div style="text-align: center; color: #777777; font-size: 12px; margin-top: 20px;">
-        <p>&copy; 2024 Costal. All rights reserved.</p>
+        <p>&copy; 2024 Code P. All rights reserved.</p>
       </div>
     </div>
   `;
