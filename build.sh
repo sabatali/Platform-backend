@@ -20,6 +20,6 @@ export JAVA_HOME="$(pwd)/$jdk_install_dir"
 export PATH="$JAVA_HOME/bin:$PATH"
 
 # Verify installation
-java -version
-
+javac -version
 echo "JDK installation completed."
+
