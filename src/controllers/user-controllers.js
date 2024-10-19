@@ -206,7 +206,7 @@ export const userData = async (req, res) => {
 export const UpdateUser = async (req, res) => {
   try {
     const { id } = req.params;
-    const role = "editer";
+    const role = "contributor";
 
     const userExist = await User.findOne({ _id: id });
     console.log("🚀 ~ UpdateUser ~ userExist:", userExist);
