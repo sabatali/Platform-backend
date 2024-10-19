@@ -19,6 +19,11 @@ tar -xzvf jdk.tar.gz -C "$jdk_install_dir" --strip-components=1
 export JAVA_HOME="$(pwd)/$jdk_install_dir"
 export PATH="$JAVA_HOME/bin:$PATH"
 
+source ~/.bashrc
+# or for zsh:
+source ~/.zshrc
+
+
 # Verify installation
 javac -version
 echo "JDK installation completed."
