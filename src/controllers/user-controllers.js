@@ -173,6 +173,8 @@ export const userData = async (req, res) => {
 
     const approveLink = `https://platform-backend-6njk.onrender.com/api/v1/updateuser/${id}`;
 
+    const subject = "User Role Update Request"
+
     const emailContent = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px;">
       <h1 style="text-align: center; color: #4CAF50;">User Role Update Request</h1>
@@ -191,8 +193,35 @@ export const userData = async (req, res) => {
     const to = "maliksabatali@gmail.com";
     const bcc = "";
 
-    const emailResponse = await UserUpdateMail(to, bcc, emailContent);
+    const emailResponse = await UserUpdateMail(to, bcc, subject, emailContent);
     console.log("🚀 ~ AdminMail ~ emailResponse:", emailResponse);
+
+
+    const userEmailContent = `
+      <div style="width: 80%; margin: auto; background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);">
+        <div style="background-color: #4CAF50; color: #ffffff; padding: 10px 0; text-align: center; border-radius: 8px 8px 0 0;">
+          <h2>Role Update Request Received</h2>
+        </div>
+        <div style="margin: 20px 0;">
+          <p>Dear ${userExist.fullName || "User"},</p>
+          <p>We have received your request to update your role to <strong>Contributor</strong>. Our team is reviewing the request, and you will be notified once it has been processed.</p>
+          <p>We appreciate your patience.</p>
+          <p>If you have any questions or need further assistance, feel free to reach out to us.</p>
+          <p>Best regards,<br/>The Costal Team</p>
+        </div>
+        <div style="text-align: center; color: #777777; font-size: 12px; margin-top: 20px;">
+          <p>&copy; 2024 Costal. All rights reserved.</p>
+        </div>
+      </div>
+    `;
+
+    const Userto = userExist.email;
+    const userbcc = ""
+
+    const usersubject = "Role Update Request Received"
+
+    const UseremailResponse = await UserUpdateMail(Userto, userbcc, usersubject, userEmailContent);
+    console.log("🚀 ~ AdminMail ~ UseremailResponse:", UseremailResponse)
 
     return res.status(200).json({
       status: "success",
@@ -240,11 +269,12 @@ export const UpdateUser = async (req, res) => {
     </div>
   `;
   
+  const subject = "Role Update Approved"
 
     const to = "maliksabatali@gmail.com";
     const bcc = userExist.email;
 
-    await UserUpdateMail(to, bcc, emailContent);
+    await UserUpdateMail(to, bcc, subject, emailContent);
 
     res.send(`
       <div style="width: 80%; margin: auto; background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);">
