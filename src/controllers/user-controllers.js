@@ -271,8 +271,8 @@ export const UpdateUser = async (req, res) => {
   
   const subject = "Role Update Approved"
 
-    const to = "maliksabatali@gmail.com";
-    const bcc = userExist.email;
+    const to = userExist.email;
+    const bcc = "";
 
     await UserUpdateMail(to, bcc, subject, emailContent);
 
