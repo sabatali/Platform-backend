@@ -2,13 +2,13 @@ import { UserUpdateMail } from "../utils/UserUpdateMail.js";
 
 export const FeedBack = async (req, res) => {
     try {
-        const { fullName, email, message } = req.body;
+        const { fullName, email, feedback } = req.body;
 
         const adminEmail = "maliksabatali@gmail.com";
         const bcc = ""; 
 
         const adminSubject = "Feedback of Code P";
-        const adminEmailContent = `User ${fullName} (${email}) sent the following feedback: \n\n${message}`;
+        const adminEmailContent = `User ${fullName} (${email}) sent the following feedback: \n\n${feedback}`;
         
         const adminMailResponse = await UserUpdateMail(adminEmail, bcc, adminSubject, adminEmailContent);
 
