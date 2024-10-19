@@ -22,7 +22,7 @@ const questionSchema = new mongoose.Schema({
   },
   language: {
     type: String,
-    enum: ['C++', 'C', 'JS',"Python"],
+    enum: ['C++', 'C', 'JS',"Python", "Java"],
     required: true,
   },
   solutionDescription: {
