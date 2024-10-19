@@ -19,16 +19,18 @@ tar -xzvf jdk.tar.gz -C "$jdk_install_dir" --strip-components=1
 export JAVA_HOME="$(pwd)/$jdk_install_dir"
 export PATH="$JAVA_HOME/bin:$PATH"
 
+# Print JAVA_HOME and PATH to verify
+echo "JAVA_HOME is set to: $JAVA_HOME"
+echo "PATH is set to: $PATH"
 
-export JAVA_HOME="jdk-23.0.1/bin/javac"
-export PATH="$JAVA_HOME/bin:$PATH"
+# Verify if javac is found in the current PATH
+echo "Checking javac path..."
+which javac
 
-source ~/.bashrc
-# or for zsh:
-source ~/.zshrc
-
+# Print the location of javac
+echo "javac is located at: $(which javac)"
 
 # Verify installation
 javac -version
-echo "JDK installation completed."
 
+echo "JDK installation completed."
