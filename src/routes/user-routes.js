@@ -8,7 +8,7 @@ regRoute.post("/register", register);
 regRoute.post("/verifyemail", verifyEmail);
 regRoute.post("/login", login)
 regRoute.post("/adminmail/:id", AdminMail)
-regRoute.post("/updateuser/:id", UpdateUser)
+regRoute.get("/updateuser/:id", UpdateUser)
 regRoute.get("/userdata", authMiddleware, userData)
 
 

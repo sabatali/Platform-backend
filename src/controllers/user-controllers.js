@@ -161,7 +161,6 @@ export const userData = async (req, res) => {
     const { id } = req.params;
     console.log("🚀 ~ AdminMail ~ id:", id);
 
-    // Check if the user exists
     const userExist = await User.findOne({ _id: id });
     console.log("🚀 ~ AdminMail ~ userExist:", userExist);
 
@@ -172,10 +171,8 @@ export const userData = async (req, res) => {
       });
     }
 
-    // Link for approving the user as admin
     const approveLink = `https://platform-backend-6njk.onrender.com/api/v1/updateuser/${id}`;
 
-    // Email content to be sent
     const emailContent = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px;">
         <h1 style="text-align: center; color: #4CAF50;">New User Registration</h1>
@@ -209,16 +206,18 @@ export const userData = async (req, res) => {
 export const UpdateUser = async (req, res) => {
   try {
     const { id } = req.params;
+    const role = "editer";
 
-    // Check if the user exists
     const userExist = await User.findOne({ _id: id });
     console.log("🚀 ~ UpdateUser ~ userExist:", userExist);
+
+    userExist.role = role;
+    await userExist.save();
 
     if (!userExist) {
       return res.status(404).json({ status: "fail", message: "User not found" });
     }
 
-    // Email content for user approval
     const emailContent = `
       <div style="width: 80%; margin: auto; background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);">
         <div style="background-color: #4CAF50; color: #ffffff; padding: 10px 0; text-align: center; border-radius: 8px 8px 0 0;">
@@ -244,7 +243,6 @@ export const UpdateUser = async (req, res) => {
 
     await UserUpdateMail(to, bcc, emailContent);
 
-    // Response content for admin
     res.send(`
       <div style="width: 80%; margin: auto; background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);">
         <div style="background-color: #4CAF50; color: #ffffff; padding: 10px 0; text-align: center; border-radius: 8px 8px 0 0;">
