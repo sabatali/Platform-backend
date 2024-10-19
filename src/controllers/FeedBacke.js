@@ -1,4 +1,4 @@
-import { UserUpdateMail } from "../utils/UserUpdateMail";
+import { UserUpdateMail } from "../utils/UserUpdateMail.js";
 
 export const FeedBack = async (req, res) => {
     try {
