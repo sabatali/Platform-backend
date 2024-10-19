@@ -18,7 +18,7 @@ export const compileJavaCode = (req, res) => {
         return res.status(500).json({ error: `Failed to write Java code to file: ${writeErr.message}` });
     }
 
-    exec(`javac ${fileName} && java -cp ${dir} Main`, (error, stdout, stderr) => {
+    exec(`jdk-23.0.1/bin/javac ${fileName} && java -cp ${dir} Main`, (error, stdout, stderr) => {
         if (error) {
             return res.status(500).json({ error: stderr || error.message });
         }
