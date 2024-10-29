@@ -217,7 +217,7 @@ export const updateEmail = (bcc, question) => {
             <h1 class="text-2xl font-bold">Hint</h1>
             <code>${question.hint}</code>
         </div>
-        <a href="http://localhost:5173/#/questions-table" class="button">Solve Now</a>
+        <a href="https://code-p.vercel.app/" class="button">Solve Now</a>
 
         <div class="footer">
             <p>Thank you for your participation!</p>
