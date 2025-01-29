@@ -1,6 +1,7 @@
 import cors from 'cors';
 import express from 'express';
 import connectDB from "./db/db.js";
+import notesRoutes from './routes/NotesRoutes.js';
 import assingmentRoute from './routes/assingmentRoutes.js';
 import compilerRoute from './routes/compilerRoutes.js';
 import transactionRoute from './routes/expenseRoutes.js';
@@ -21,6 +22,7 @@ app.use("/api/v1", questionRoute);
 app.use("/api/v1", assingmentRoute);
 app.use("/api/v1", compilerRoute);
 app.use("/api/v1", transactionRoute);
+app.use("/api/v1", notesRoutes);
 
 // Root route for testing
 app.get('/', (req, res) => {
