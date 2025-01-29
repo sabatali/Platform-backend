@@ -48,7 +48,6 @@ export const getAllQuestions = async (req, res) => {
     try {
         // Fetch all questions
         const questions = await Question.find();
-        console.log("🚀 ~ getAllQuestions ~ questions:", questions);
 
         const questionWithUsers = await Promise.all(questions.map(async (question) => {
             const user = await User.findOne({ _id: question.createdBy });
